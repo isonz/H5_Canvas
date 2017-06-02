@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>思维导图</title>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="js/daotu.js"></script>
+</head>
+<body>
+
+<style>
+    *{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+    body{background: #f6f6f6;}
+    #myCanvas{border:1px solid #d3d3d3; display: block; margin: 30px auto; background: #fff;}
+</style>
+
+<canvas id="myCanvas" width="800" height="800">您的浏览器不支持 HTML5 canvas 标签。</canvas>
+
+<script>
+    var ctx =document.getElementById("myCanvas").getContext("2d");
+
+    var rect1 = ctx.roundRect(2, "#000", 50, 50, 100, 50, 5, 'A', 16).stroke();
+
+    ctx.moveTo(50+(100/2),50+50);
+    ctx.lineTo(50+(100/2),420);
+    ctx.stroke();
+
+    var rect2 = ctx.roundRect(2, "#000", 50,420, 100, 50,5, 'B', 18).stroke();
+    var rect3 = ctx.roundRect(2, "#000", 550,220, 100, 50,5, 'C', 20).stroke();
+
+</script>
+</body>
+</html>
