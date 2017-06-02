@@ -45,13 +45,13 @@ var g = new dagreD3.graphlib.Graph()
   .setGraph({nodesep: 70,
       ranksep: 50,      //间距
       rankdir: "LR",    //左右结构
+      orderRestarts:1,
       marginx: 10,
       marginy: 10})
   .setDefaultEdgeLabel(function() { return {}; });
 
 
-g.setNode('TOP',  { label: "TOPPPPPPP", class: "type-TOP", rank:"same_0"});
-g.setNode(1,  { label: "S"});
+g.setNode('ONE',  { label: "S"});
 g.setNode(2,  { label: "NP"});
 g.setNode(3,  { label: "DT"});
 g.setNode(4,  { label: "This",      class: "type-TK" });
@@ -65,6 +65,7 @@ g.setNode(11, { label: "NN"});
 g.setNode(12, { label: "example",   class: "type-TK" });
 g.setNode(13, { label: "xxx.xxx"});
 g.setNode(14, { label: "sentence",  class: "type-TK" });
+g.setNode('TOP',  { label: "TOPPPPPPP", class: "type-TOP", rank:"same_0"});
 
 
 g.nodes().forEach(function(v) {
@@ -72,9 +73,10 @@ g.nodes().forEach(function(v) {
   node.rx = node.ry = 5;
 });
 
+g.setEdge(13, 3, {label: "test",  class: "edge-special-02" });
 g.setEdge(3, 4);
 g.setEdge(2, 3);
-g.setEdge(1, 2, {label: "TTTTT",  class: "edge-special-01"});
+g.setEdge('ONE', 2, {class: "edge-special-01", arrowhead: 'vee'});      //undirected
 g.setEdge(6, 7);
 g.setEdge(5, 6);
 g.setEdge(9, 10);
@@ -82,11 +84,15 @@ g.setEdge(8, 9);
 g.setEdge(11,12);
 g.setEdge(8, 11);
 g.setEdge(5, 8);
-g.setEdge(1, 5);
+g.setEdge('ONE', 5);
 g.setEdge(13,14);
-g.setEdge(1, 13);
-g.setEdge('TOP', 1);
-g.setEdge(13, 3, {label: "test",  class: "edge-special-02" });
+g.setEdge('ONE', 13);
+g.setEdge('TOP', 'ONE');
+
+g.edges().forEach(function(v) {
+    var edge = g.edge(v);
+    edge.arrowhead = 'vee';     //"normal", "vee", "undirected"
+});
 
 var render = new dagreD3.render();
 
